@@ -54,3 +54,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+    // JavaScript function to copy phone number to clipboard
+    // document.getElementById('phone').addEventListener('click', function() {
+    //     const phoneNumber = '267-225-6778';
+        
+    //     // Create a temporary input element to copy the phone number
+    //     const tempInput = document.createElement('input');
+    //     tempInput.value = phoneNumber;
+    //     document.body.appendChild(tempInput);
+    //     tempInput.select();
+    //     document.execCommand('copy');
+    //     document.body.removeChild(tempInput);
+
+    //     // Show the toast message
+    //     const toast = document.getElementById('toast');
+    //     toast.style.display = 'block';
+
+    //     // Hide the toast after 2 seconds
+    //     setTimeout(function() {
+    //         toast.style.display = 'none';
+    //     }, 2000);
+    // });
