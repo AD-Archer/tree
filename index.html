@@ -7,12 +7,16 @@
     <meta name="author" content="Antonio Archer">
     <meta property="og:title" content="Antonio Archer | Tech Links">
     <meta property="og:description" content="Full Stack Software Engineer with expertise in Reactjs, Javascript, and certified in Python.">
-    <meta property="og:image" content="/icon.jpg">
-    <meta property="og:url" content="https://www.antonioarcher.com">
+    <meta property="og:url" content="https://www.adarcher.com">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Antonio Archer | Tech Links">
     <meta name="twitter:description" content="Full Stack Software Engineer with expertise in Reactjs, Javascript, and certified in Python.">
-    <meta name="twitter:image" content="/icon.jpg">
+    <meta property="og:image" content="https://www.adarcher.com/icon.jpg">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:width" content="160">
+    <meta property="og:image:height" content="160">
+    <meta name="twitter:image" content="https://www.adarcher.com/icon.jpg">
+    <meta name="twitter:image:alt" content="Antonio Archer Logo">
 
     <!-- Favicon (using icon.jpg from the public folder) -->
     <link rel="icon" href="/icon.jpg" type="image/jpeg">
@@ -26,7 +30,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css"></head>
+    <link rel="stylesheet" href="style.css">
+</head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWFD0GWT33"></script>
     <script>
@@ -187,13 +192,18 @@ data-link="https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/li
 <script>
 // google analytics
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", function () {
+    document.querySelectorAll("a[target='_blank']").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            let url = this.href;
             gtag("event", "link_click", {
                 event_category: "engagement",
-                event_label: this.href,
+                event_label: url,
                 link_name: this.getAttribute("data-link-name") || "unknown"
             });
+            setTimeout(() => {
+                window.open(url, "_blank");
+            }, 300); // Delay navigation slightly
         });
     });
 });
