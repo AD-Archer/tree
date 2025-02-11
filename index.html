@@ -27,6 +27,15 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css"></head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWFD0GWT33"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KWFD0GWT33');
+    </script>
 <body>
 
  <!-- Modal Structure -->
@@ -82,17 +91,17 @@
 
 <div class="links-container">
     
-    <a href="https://www.antonioarcher.com" class="link-btn" target="_blank">
+    <a href="https://www.antonioarcher.com" class="link-btn" target="_blank" data-link-name="portfolio">
         <i class="fa-duotone fa-solid fa-globe"></i> Personal Site
     </a>
-    <a href="https://www.github.com/ad-archer" class="link-btn" target="_blank">
+    <a href="https://www.github.com/ad-archer" class="link-btn" target="_blank" data-link-name="github">
         <i class="fab fa-github"></i> GitHub Profile
     </a>
-    <a href="https://www.linkedin.com/in/antonio-archer/" class="link-btn" target="_blank">
+    <a href="https://www.linkedin.com/in/antonio-archer/" class="link-btn" target="_blank" data-link-name="linkedin">
         <i class="fab fa-linkedin"></i> LinkedIn Profile
     </a>
-    <a href="https://www.antonioarcher.com/projects" class="link-btn" target="_blank">
-        <i class="fas fa-code"></i> Live Projects
+    <a href="https://www.antonioarcher.com/projects" class="link-btn" target="_blank" data-link-name="projects">
+        <i class="fas fa-code"></i> Link to view my living projects
     </a>
 </div>
 
@@ -174,5 +183,22 @@ data-link="https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/li
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
+
+<script>
+// google analytics
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function () {
+            gtag("event", "link_click", {
+                event_category: "engagement",
+                event_label: this.href,
+                link_name: this.getAttribute("data-link-name") || "unknown"
+            });
+        });
+    });
+});
+
+
+</script>
 </body>
 </html>
