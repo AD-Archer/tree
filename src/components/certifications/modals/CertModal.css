@@ -1,0 +1,46 @@
+/* Modal Styles */
+.modal-content.bg-dark {
+  background-color: #1a1a1a !important;
+  border: 1px solid var(--border-color);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header .modal-title {
+  color: var(--accent-red);
+}
+
+/* Improve modal image display */
+.modal-body img {
+  max-height: 300px;
+  width: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  background-color: #0a0a0a;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-danger {
+  background-color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.btn-danger:hover {
+  background-color: #e62e2e;
+  border-color: #e62e2e;
+}
+
+/* Make modal responsive */
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  .modal-body img {
+    max-height: 200px;
+  }
+} 

@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://www.adarcher.com/icon.jpg">
     <meta name="twitter:image:alt" content="Antonio Archer Logo">
 
-    <!-- Favicon (using icon.jpg from the public folder) -->
+    <!-- Favicon -->
     <link rel="icon" href="/icon.jpg" type="image/jpeg">
 
     <title>Antonio Archer | Tech Links</title>
@@ -29,187 +29,20 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWFD0GWT33"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-KWFD0GWT33');
     </script>
+</head>
 <body>
-
- <!-- Modal Structure -->
-<div class="modal fade" id="certModal" tabindex="-1" aria-labelledby="certModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white">
-            <div class="modal-header">
-                <h5 class="modal-title" id="certModalLabel"></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="certModalImg" src="" alt="Certification" class="img-fluid rounded mb-3">
-                <p id="certModalIssuer" class="mb-1"></p>
-                <p id="certModalDate" class="mb-3 text-muted"></p>
-                <a id="certModalLink" href="#" target="_blank" class="btn btn-danger">
-                    <i class="fas fa-external-link-alt"></i> View Certificate Online
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container text-center">
-    <img src="/personal/antonioarcher.jpeg" alt="Antonio Archer" class="profile-img">
-    <h1>Antonio Archer</h1>
-
-    <div class="bio">
-        <p>Full Stack Software Engineer</p>
-        <p>Credited in Reactjs, Javascript, and certified in Python. working hard to make tech fun and practical to improve human lives
-        </p>
-    </div>
-
-<!-- Social and Contact Info -->
-<div class="social-icons">
-    <a href="mailto:adarcher21@gmail.com" class="social-icon" title="Email">
-        <i class="fas fa-envelope"></i>
-    </a>
-    <!-- Phone Icon with ID for JS -->
-    <a href="tel:+12672256778" class="social-icon" title="Phone" id="phone">
-        <i class="fas fa-phone"></i>
-    </a>
-    <a href="https://www.instagram.com/antonio_darcher/" class="social-icon" target="_blank" title="Instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.twitter.com/ad_archer_" class="social-icon" target="_blank" title="Twitter">
-        <i class="fab fa-twitter"></i>
-    </a>
-</div>
-<div class="contact-info">
-</div>
-
-<div class="links-container">
-    <a href="https://www.antonioarcher.com" class="link-btn" target="_blank" data-link-name="portfolio">
-        <i class="fa-duotone fa-solid fa-globe"></i> Personal Site
-    </a>
-    <a href="https://www.github.com/ad-archer" class="link-btn" target="_blank" data-link-name="github">
-        <i class="fab fa-github"></i> GitHub Profile
-    </a>
-    <a href="https://www.linkedin.com/in/antonio-archer/" class="link-btn" target="_blank" data-link-name="linkedin">
-        <i class="fab fa-linkedin"></i> LinkedIn Profile
-    </a>
-    <!-- Resume Button -->
-    <a href="/resume.pdf" class="link-btn" target="_blank" data-link-name="resume">
-        <i class="fas fa-file-alt"></i> View Resume
-    </a>
-    <a href="https://www.antonioarcher.com/projects" class="link-btn" target="_blank" data-link-name="projects">
-        <i class="fas fa-code"></i> Link to view my living projects
-    </a>
-</div>
-
-<!-- Certifications Section -->
-<section id="certifications" class="certifications container">
-    <h2>Certifications</h2>
-    <div class="cert-list">
-        <!-- React Certification -->
-        <div class="cert-card" 
-        data-bs-toggle="modal" 
-        data-bs-target="#certModal" 
-        data-title="React Certification" 
-        data-img="/certs/codeacademy.jpeg"
-        data-issuer="Codecademy"
-        data-date="Issued Feb 2025"
-        data-link="https://www.codecademy.com/profiles/Ad-Archer/certificates/af00e5032d0a68cc84879983f5d8333b">
-        <div class="cert-img-container">
-            <img src="/certs/codeacademy.jpeg" alt="React Certification" class="cert-img">
-        </div>
-        <div class="cert-text">
-            <h3>React Certification</h3>
-            <p>Codecademy</p>
-            <p>Issued Feb 2025</p>
-        </div>
-    </div>
+    <div id="root"></div>
     
-    <!-- Generative AI Fundamentals -->
-    <div class="cert-card" 
-    data-bs-toggle="modal" 
-    data-bs-target="#certModal" 
-    data-title="Academy Accreditation - Generative AI Fundamentals" 
-    data-img="/certs/databricks.jpeg"
-    data-issuer="Databricks"
-    data-date="Issued Nov 2024 (Expires Nov 2026)"
-    data-link="https://credentials.databricks.com/03505993-f39c-4a0e-9b60-d63684c156b6">
-    <div class="cert-img-container">
-        <img src="/certs/databricks.jpeg" alt="Generative AI Fundamentals" class="cert-img">
-    </div>
-    <div class="cert-text">
-        <h3>Academy Accreditation - Generative AI Fundamentals</h3>
-        <p>Databricks</p>
-        <p>Issued Nov 2024</p>
-        <p>(Expires Nov 2026)</p>
-    </div>
-</div>
-
-<!-- Python Certification -->
-<div class="cert-card" 
-data-bs-toggle="modal" 
-data-bs-target="#certModal" 
-data-title="PCEP™ – Certified Entry-Level Python Programmer" 
-data-img="/certs/python.jpeg"
-data-issuer="Python Institute"
-data-date="Issued Jun 2024"
-data-link="https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/linked_in_profile">
-<div class="cert-img-container">
-    <img src="/certs/python.jpeg" alt="Python Certification" class="cert-img">
-</div>
-<div class="cert-text">
-    <h3>PCEP™ – Certified Entry-Level Python Programmer</h3>
-    <p>Python Institute - Issued Jun 2024</p>
-</div>
-</div>
-</div>
-</section>
-
-<footer>© 2024 Antonio Archer.<br> Full Stack Software Engineer
-    <br>
-
-    <p>
-        <strong>Email:</strong> <a href="mailto:adarcher21@gmail.com">adarcher21@gmail.com</a>
-        <br>
-        <strong>Phone:</strong> 267-225-6778
-    </p>
-
-</footer>
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
-
-<script>
-// google analytics
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("a[target='_blank']").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            let url = this.href;
-            gtag("event", "link_click", {
-                event_category: "engagement",
-                event_label: url,
-                link_name: this.getAttribute("data-link-name") || "unknown"
-            });
-            setTimeout(() => {
-                window.open(url, "_blank");
-            }, 300); // Delay navigation slightly
-        });
-    });
-});
-
-
-</script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

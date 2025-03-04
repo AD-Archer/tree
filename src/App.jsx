@@ -1,14 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HtmlContent from './components/HtmlContent';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HtmlContent />} />
-        <Route path="/resume" element={<iframe src="/resume.pdf" width="100%" height="1000px" title="Resume"></iframe>} />
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/resume" element={<Navigate to="/resume.pdf" />} />
       </Routes>
     </Router>
   );
