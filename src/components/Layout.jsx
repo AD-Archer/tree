@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div className="container text-center">
+    <div className="container animate-fade-in">
       {children}
       <Footer />
     </div>
@@ -46,11 +46,15 @@ Layout.propTypes = {
 
 const Footer = () => (
   <footer>
-    © {new Date().getFullYear()} Antonio Archer.<br /> Full Stack Software Engineer
+    <p>© {new Date().getFullYear()} Antonio Archer</p>
+    <p>Full Stack Software Engineer</p>
     <p>
-      <strong>Email:</strong> <a href="mailto:adarcher21@gmail.com">adarcher21@gmail.com</a>
-      <br />
-      <strong>Phone:</strong> 267-225-6778
+      <strong>Email:</strong>{" "}
+      <a href="mailto:adarcher21@gmail.com">adarcher21@gmail.com</a>
+    </p>
+    <p>
+      <strong>Phone:</strong>{" "}
+      <a href="tel:+12672256778">267-225-6778</a>
     </p>
   </footer>
 );

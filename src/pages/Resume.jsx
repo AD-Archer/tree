@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Resume.css';
 
 const Resume = () => {
   const navigate = useNavigate();

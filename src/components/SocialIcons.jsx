@@ -17,6 +17,7 @@ const SocialIcons = () => {
           id={link.id}
           target={link.target}
           rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
+          aria-label={link.title}
         >
           <i className={link.icon}></i>
         </a>

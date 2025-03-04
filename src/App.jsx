@@ -1,14 +1,13 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Layout from './components/Layout';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import './App.css';
+import Resume from './pages/Resume';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout><Home /></Layout>} />
-        <Route path="/resume" element={<Navigate to="/resume.pdf" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/resume" element={<Resume />} />
       </Routes>
     </Router>
   );

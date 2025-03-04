@@ -1,4 +1,4 @@
-import './CertificationsSection.css';
+import React from 'react';
 
 const CertificationsSection = () => {
   const certifications = [
@@ -27,35 +27,34 @@ const CertificationsSection = () => {
   ];
 
   return (
-    <section id="certifications" className="certifications container">
+    <section className="certifications">
       <h2>Certifications</h2>
       <div className="cert-list">
         {certifications.map((cert, index) => (
-          <div key={index}>
-            <div 
-              className="cert-card"
-              data-bs-toggle="modal"
-              data-bs-target="#certModal"
-              data-title={cert.title}
-              data-img={cert.img}
-              data-issuer={cert.issuer}
-              data-date={cert.date}
-              data-link={cert.link}
-              data-extra-info={cert.extraInfo}
-            >
-              <div className="cert-img-container">
-                <img src={cert.img} alt={cert.title} className="cert-img" />
-              </div>
-              <div className="cert-text">
-                <h3>{cert.title}</h3>
-                <div>
-                  <p>{cert.issuer}</p>
-                  <p>{cert.date.split('(')[0]}</p>
-                  {cert.extraInfo && <p className="extra-info">{cert.extraInfo}</p>}
-                </div>
-              </div>
+          <a 
+            key={index}
+            href={cert.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cert-card"
+            data-link-name={`cert-${index}`}
+          >
+            <div className="cert-img-container">
+              <img 
+                src={cert.img} 
+                alt={cert.title} 
+                className="cert-img" 
+              />
             </div>
-          </div>
+            <div className="cert-info">
+              <h3>{cert.title}</h3>
+              <p>{cert.issuer}</p>
+              <p>{cert.date}</p>
+              {cert.extraInfo && (
+                <p><em>{cert.extraInfo}</em></p>
+              )}
+            </div>
+          </a>
         ))}
       </div>
     </section>

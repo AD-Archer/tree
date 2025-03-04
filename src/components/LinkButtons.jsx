@@ -2,7 +2,7 @@ const LinkButtons = () => {
   const links = [
     { 
       href: "https://www.antonioarcher.com", 
-      icon: "fa-duotone fa-solid fa-globe", 
+      icon: "fa-solid fa-globe", 
       text: "Personal Site", 
       name: "portfolio" 
     },
@@ -27,7 +27,7 @@ const LinkButtons = () => {
     { 
       href: "https://www.antonioarcher.com/projects", 
       icon: "fas fa-code", 
-      text: "Link to view my living projects", 
+      text: "View My Projects", 
       name: "projects" 
     }
   ];
@@ -43,7 +43,11 @@ const LinkButtons = () => {
           rel="noopener noreferrer"
           data-link-name={link.name}
         >
-          <i className={link.icon}></i> {link.text}
+          <div className="link-btn-content">
+            <i className={link.icon}></i>
+            <span>{link.text}</span>
+          </div>
+          <i className="fas fa-chevron-right"></i>
         </a>
       ))}
     </div>
