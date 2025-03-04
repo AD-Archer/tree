@@ -1,10 +1,18 @@
 const LinkButtons = () => {
   const links = [
     { 
+      href: "https://phillysocial.adarcher.app", 
+      icon: "fas fa-users", 
+      text: "Philly Social - my most recent project", 
+      name: "phillysocial",
+      image: "/personal/phillysocial.png" 
+    },
+    { 
       href: "https://www.antonioarcher.com", 
       icon: "fa-solid fa-globe", 
-      text: "Personal Site", 
-      name: "portfolio" 
+      text: "Portfolio Site", 
+      name: "portfolio",
+
     },
     { 
       href: "https://www.github.com/ad-archer", 
@@ -29,7 +37,8 @@ const LinkButtons = () => {
       icon: "fas fa-code", 
       text: "View My Projects", 
       name: "projects" 
-    }
+    },
+   
   ];
 
   return (
@@ -38,18 +47,72 @@ const LinkButtons = () => {
         <a 
           key={index}
           href={link.href} 
-          className="link-btn" 
+          className={`link-btn ${link.image ? 'with-image' : ''}`}
           target="_blank" 
           rel="noopener noreferrer"
           data-link-name={link.name}
         >
-          <div className="link-btn-content">
-            <i className={link.icon}></i>
-            <span>{link.text}</span>
-          </div>
-          <i className="fas fa-chevron-right"></i>
+          {link.image ? (
+            <div className="link-btn-content featured-image">
+              <div className="image-container">
+                <img 
+                  src={link.image} 
+                  alt={`${link.text}`} 
+                  className="link-featured-image" 
+                />
+              </div>
+              <span>{link.text}</span>
+              <i className="fas fa-chevron-right arrow-icon"></i>
+            </div>
+          ) : (
+            <div className="link-btn-content">
+              <i className={link.icon}></i>
+              <span>{link.text}</span>
+              <i className="fas fa-chevron-right"></i>
+            </div>
+          )}
         </a>
       ))}
+
+      <style jsx>{`
+        .link-btn.with-image {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .link-btn-content.featured-image {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          position: relative;
+        }
+        
+        .image-container {
+          width: 100%;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+        
+        .link-featured-image {
+          width: 100%;
+          aspect-ratio: 16/9;
+          object-fit: cover;
+        }
+        
+        .link-btn-content.featured-image .arrow-icon {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+          .link-featured-image {
+            aspect-ratio: 3/2;
+          }
+        }
+      `}</style>
     </div>
   );
 };
