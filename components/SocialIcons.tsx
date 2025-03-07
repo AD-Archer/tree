@@ -18,7 +18,6 @@ const SocialIcons = () => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
   const iconColor = Colors[colorScheme ?? 'light'].icon;
-  const hoverColor = Colors[colorScheme ?? 'light'].tint;
 
   const socialLinks: SocialIconProps[] = [
     { 

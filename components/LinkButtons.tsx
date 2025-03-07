@@ -69,7 +69,6 @@ const LinkButton = ({ icon, label, url, imageName, name, isWide = false }: LinkB
 };
 
 const LinkButtons = () => {
-  const colorScheme = useColorScheme();
   const isWeb = Platform.OS === 'web';
   const isTablet = Layout.isTablet;
   const isDesktop = Layout.isDesktop;

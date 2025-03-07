@@ -3,14 +3,11 @@ import { StyleSheet, Image, Platform, View } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { IMAGES } from '@/constants/Images';
-import { Colors } from '@/constants/Colors';
 import { Layout } from '@/constants/Layout';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 const ProfileSection = () => {
   // Find the profile image from our images data
   const profileImage = IMAGES.find(img => img.name === 'antonioarcher.jpeg');
-  const colorScheme = useColorScheme();
   const isDesktop = Layout.isDesktop;
   const isTablet = Layout.isTablet;
 
