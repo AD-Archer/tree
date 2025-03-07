@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Linking, Image, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Linking, Image, View, Platform } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { FontAwesome } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
+import { Layout } from '@/constants/Layout';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { IMAGES } from '@/constants/Images';
 
@@ -13,11 +14,14 @@ type LinkButtonProps = {
   url: string;
   imageName?: string;
   name?: string;
+  isWide?: boolean;
 };
 
-const LinkButton = ({ icon, label, url, imageName, name }: LinkButtonProps) => {
+const LinkButton = ({ icon, label, url, imageName, name, isWide = false }: LinkButtonProps) => {
   const colorScheme = useColorScheme();
-  const iconColor = Colors[colorScheme ?? 'light'].text;
+  const iconColor = Colors[colorScheme ?? 'light'].icon;
+  const borderColor = Colors[colorScheme ?? 'light'].border;
+  const cardBackground = Colors[colorScheme ?? 'light'].cardBackground;
   const image = imageName ? IMAGES.find(img => img.name === imageName) : null;
   
   const handlePress = () => {
@@ -27,7 +31,11 @@ const LinkButton = ({ icon, label, url, imageName, name }: LinkButtonProps) => {
   if (imageName && image) {
     return (
       <TouchableOpacity 
-        style={[styles.button, styles.buttonWithImage]} 
+        style={[
+          styles.button, 
+          styles.buttonWithImage, 
+          { backgroundColor: cardBackground, borderColor: borderColor }
+        ]} 
         onPress={handlePress}
         accessibilityLabel={label}
       >
@@ -35,7 +43,7 @@ const LinkButton = ({ icon, label, url, imageName, name }: LinkButtonProps) => {
           <Image source={{ uri: image.url }} style={styles.featuredImage} resizeMode="cover" />
         </View>
         <ThemedView style={styles.buttonContent}>
-          <ThemedText style={styles.buttonText}>{label}</ThemedText>
+          <ThemedText variant="bodyBold" style={styles.buttonText}>{label}</ThemedText>
           <FontAwesome name="chevron-right" size={16} color={iconColor} style={styles.arrowIcon} />
         </ThemedView>
       </TouchableOpacity>
@@ -44,13 +52,16 @@ const LinkButton = ({ icon, label, url, imageName, name }: LinkButtonProps) => {
   
   return (
     <TouchableOpacity 
-      style={styles.button} 
+      style={[
+        styles.button, 
+        { backgroundColor: cardBackground, borderColor: borderColor }
+      ]} 
       onPress={handlePress}
       accessibilityLabel={label}
     >
       <ThemedView style={styles.buttonContent}>
-        <FontAwesome name={icon as any} size={20} color={iconColor} />
-        <ThemedText style={styles.buttonText}>{label}</ThemedText>
+        <FontAwesome name={icon === 'file-alt' ? 'file-text-o' : icon as any} size={20} color={iconColor} />
+        <ThemedText variant="body" style={styles.buttonText}>{label}</ThemedText>
         <FontAwesome name="chevron-right" size={16} color={iconColor} style={styles.arrowIcon} />
       </ThemedView>
     </TouchableOpacity>
@@ -58,13 +69,19 @@ const LinkButton = ({ icon, label, url, imageName, name }: LinkButtonProps) => {
 };
 
 const LinkButtons = () => {
+  const colorScheme = useColorScheme();
+  const isWeb = Platform.OS === 'web';
+  const isTablet = Layout.isTablet;
+  const isDesktop = Layout.isDesktop;
+  
   const links = [
     { 
       icon: 'users', 
       label: 'Philly Social - my most recent project', 
       url: 'https://phillysocial.adarcher.app',
       name: 'phillysocial',
-      imageName: 'phillysocial.png'
+      imageName: 'phillysocial.png',
+      isWide: true
     },
     { 
       icon: 'globe', 
@@ -99,29 +116,114 @@ const LinkButtons = () => {
   ];
 
   return (
-    <ThemedView style={styles.container}>
-      {links.map((link, index) => (
-        <LinkButton 
-          key={index} 
-          icon={link.icon} 
-          label={link.label} 
-          url={link.url} 
-          imageName={link.imageName}
-          name={link.name}
-        />
-      ))}
+    <ThemedView variant="container" style={styles.container}>
+      <ThemedText variant="h2" style={styles.sectionTitle}>Links</ThemedText>
+      
+      {isWeb ? (
+        <View style={styles.webLinksContainer}>
+          {/* Featured links with images */}
+          {links.filter(link => link.imageName).map((link, index) => (
+            <LinkButton 
+              key={`featured-${index}`}
+              icon={link.icon} 
+              label={link.label} 
+              url={link.url} 
+              imageName={link.imageName}
+              name={link.name}
+              isWide={link.isWide}
+            />
+          ))}
+          
+          {/* Regular links in grid */}
+          <View style={styles.webLinksGrid}>
+            {links.filter(link => !link.imageName).map((link, index) => (
+              <View 
+                key={index} 
+                style={[
+                  styles.webLinkItem,
+                  isDesktop ? styles.webLinkItemDesktop : 
+                  isTablet ? styles.webLinkItemTablet : 
+                  styles.webLinkItemMobile
+                ]}
+              >
+                <LinkButton 
+                  icon={link.icon} 
+                  label={link.label} 
+                  url={link.url} 
+                  name={link.name}
+                />
+              </View>
+            ))}
+          </View>
+        </View>
+      ) : (
+        <View style={styles.mobileLinksContainer}>
+          {/* Featured links first on mobile */}
+          {links.filter(link => link.imageName).map((link, index) => (
+            <LinkButton 
+              key={`featured-${index}`}
+              icon={link.icon} 
+              label={link.label} 
+              url={link.url} 
+              imageName={link.imageName}
+              name={link.name}
+            />
+          ))}
+          
+          {/* Regular links */}
+          {links.filter(link => !link.imageName).map((link, index) => (
+            <LinkButton 
+              key={index} 
+              icon={link.icon} 
+              label={link.label} 
+              url={link.url} 
+              name={link.name}
+            />
+          ))}
+        </View>
+      )}
     </ThemedView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    gap: 12,
+    width: '100%',
+  },
+  sectionTitle: {
+    marginBottom: Layout.spacing.md,
+  },
+  webLinksContainer: {
+    width: '100%',
+  },
+  webLinksGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginHorizontal: -Layout.spacing.sm, // Negative margin to offset the padding of items
+    marginTop: Layout.spacing.lg,
+  },
+  webLinkItem: {
+    paddingHorizontal: Layout.spacing.sm,
+    marginBottom: Layout.spacing.md,
+  },
+  webLinkItemDesktop: {
+    width: '33.333%', // 3 columns on desktop
+  },
+  webLinkItemTablet: {
+    width: '50%', // 2 columns on tablet
+  },
+  webLinkItemMobile: {
+    width: '100%', // 1 column on mobile web
+  },
+  mobileLinksContainer: {
+    width: '100%',
   },
   button: {
-    borderRadius: 8,
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    borderRadius: Layout.borderRadius.md,
     overflow: 'hidden',
+    borderWidth: 1,
+    ...Layout.shadows.sm,
+    marginBottom: Layout.spacing.md,
   },
   buttonWithImage: {
     flexDirection: 'column',
@@ -129,26 +231,25 @@ const styles = StyleSheet.create({
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    position: 'relative',
+    padding: Platform.OS === 'web' ? Layout.spacing.md : Layout.spacing.sm,
+    backgroundColor: 'transparent',
   },
   buttonText: {
-    marginLeft: 12,
-    fontWeight: '500',
+    marginLeft: Layout.spacing.sm,
     flex: 1,
   },
   imageContainer: {
     width: '100%',
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderTopLeftRadius: Layout.borderRadius.md,
+    borderTopRightRadius: Layout.borderRadius.md,
     overflow: 'hidden',
   },
   featuredImage: {
     width: '100%',
-    height: 150,
+    height: 180,
   },
   arrowIcon: {
-    marginLeft: 8,
+    marginLeft: Layout.spacing.sm,
   }
 });
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, Modal, Image, ScrollView, Linking } from 'react-native';
+import { StyleSheet, TouchableOpacity, Modal, Image, ScrollView, Linking, Platform, View } from 'react-native';
 import { ThemedText } from './ThemedText';
 import { ThemedView } from './ThemedView';
 import { Colors } from '@/constants/Colors';
@@ -24,7 +24,8 @@ const certificates: Certificate[] = [
     issuer: "Codecademy",
     date: "Issued Feb 2025",
     imageName: "codeacademy.jpeg",
-    link: "https://www.codecademy.com/profiles/Ad-Archer/certificates/af00e5032d0a68cc84879983f5d8333b"
+    link: "https://www.codecademy.com/profiles/Ad-Archer/certificates/af00e5032d0a68cc84879983f5d8333b",
+    extraInfo: "(Expires Nov 2026)"
   },
   {
     id: '2',
@@ -41,7 +42,8 @@ const certificates: Certificate[] = [
     issuer: "Python Institute",
     date: "Issued Jun 2024",
     imageName: "python.jpeg",
-    link: "https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/linked_in_profile"
+    link: "https://www.credly.com/badges/c97d5448-24e6-4f37-80c1-b83ab768bbdd/linked_in_profile",
+    extraInfo: "(Expires Never)"
   }
 ];
 
@@ -50,6 +52,12 @@ const CertificationsSection = () => {
   const colorScheme = useColorScheme();
   const backgroundColor = Colors[colorScheme ?? 'light'].background;
   const textColor = Colors[colorScheme ?? 'light'].text;
+  const cardBackground = Colors[colorScheme ?? 'light'].cardBackground;
+  const modalBackground = Colors[colorScheme ?? 'light'].background;
+  const buttonBackground = Colors[colorScheme ?? 'light'].buttonPrimary;
+  const buttonText = Colors[colorScheme ?? 'light'].buttonPrimaryText;
+  const borderColor = colorScheme === 'dark' ? '#4A5568' : '#E2E8F0';
+  const isWeb = Platform.OS === 'web';
 
   const handleOpenLink = (link: string) => {
     Linking.openURL(link);
@@ -60,29 +68,42 @@ const CertificationsSection = () => {
     return image ? { uri: image.url } : require('@/assets/images/cert-placeholder.png');
   };
 
+  const renderCertificateCard = (cert: Certificate) => (
+    <TouchableOpacity
+      key={cert.id}
+      style={[styles.certCard, { backgroundColor: cardBackground, borderColor: borderColor }]}
+      onPress={() => setSelectedCert(cert)}
+    >
+      <Image source={getImageSource(cert.imageName)} style={styles.certThumbnail} />
+      <ThemedView style={styles.certInfo}>
+        <ThemedText variant="bodyBold" numberOfLines={1}>{cert.title}</ThemedText>
+        <ThemedText style={styles.issuerText}>{cert.issuer}</ThemedText>
+        <ThemedText style={styles.issuerText}>{cert.date}</ThemedText>
+        {cert.extraInfo && (
+          <ThemedText style={[styles.issuerText, styles.extraInfo]}>{cert.extraInfo}</ThemedText>
+        )}
+      </ThemedView>
+    </TouchableOpacity>
+  );
+
   return (
     <ThemedView style={styles.container}>
-      <ThemedText type="subtitle">Certifications</ThemedText>
+      <ThemedText variant="h3">Certifications</ThemedText>
       
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollView}>
-        {certificates.map((cert) => (
-          <TouchableOpacity
-            key={cert.id}
-            style={styles.certCard}
-            onPress={() => setSelectedCert(cert)}
-          >
-            <Image source={getImageSource(cert.imageName)} style={styles.certThumbnail} />
-            <ThemedView style={styles.certInfo}>
-              <ThemedText type="defaultSemiBold" numberOfLines={1}>{cert.title}</ThemedText>
-              <ThemedText style={styles.issuerText}>{cert.issuer}</ThemedText>
-              <ThemedText style={styles.issuerText}>{cert.date}</ThemedText>
-              {cert.extraInfo && (
-                <ThemedText style={[styles.issuerText, styles.extraInfo]}>{cert.extraInfo}</ThemedText>
-              )}
-            </ThemedView>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      {isWeb ? (
+        <View style={styles.webCertificatesContainer}>
+          {certificates.map(cert => renderCertificateCard(cert))}
+        </View>
+      ) : (
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false} 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContent}
+        >
+          {certificates.map(cert => renderCertificateCard(cert))}
+        </ScrollView>
+      )}
       
       <Modal
         visible={selectedCert !== null}
@@ -91,7 +112,7 @@ const CertificationsSection = () => {
         onRequestClose={() => setSelectedCert(null)}
       >
         <ThemedView style={[styles.modalContainer, { backgroundColor: backgroundColor + 'F0' }]}>
-          <ThemedView style={styles.modalContent}>
+          <ThemedView style={[styles.modalContent, { backgroundColor: modalBackground, borderColor: borderColor }]}>
             <TouchableOpacity 
               style={styles.closeButton} 
               onPress={() => setSelectedCert(null)}
@@ -106,16 +127,16 @@ const CertificationsSection = () => {
                   style={styles.certImage} 
                   resizeMode="contain" 
                 />
-                <ThemedText type="subtitle">{selectedCert.title}</ThemedText>
+                <ThemedText variant="h3">{selectedCert.title}</ThemedText>
                 <ThemedText>{selectedCert.issuer} • {selectedCert.date}</ThemedText>
                 {selectedCert.extraInfo && (
                   <ThemedText style={styles.extraInfo}>{selectedCert.extraInfo}</ThemedText>
                 )}
                 <TouchableOpacity 
-                  style={styles.viewButton}
+                  style={[styles.viewButton, { backgroundColor: buttonBackground }]}
                   onPress={() => handleOpenLink(selectedCert.link)}
                 >
-                  <ThemedText style={styles.viewButtonText}>View Certificate</ThemedText>
+                  <ThemedText style={[styles.viewButtonText, { color: buttonText }]}>View Certificate</ThemedText>
                 </TouchableOpacity>
               </>
             )}
@@ -130,23 +151,40 @@ const styles = StyleSheet.create({
   container: {
     gap: 16,
   },
+  webCertificatesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   scrollView: {
     flexGrow: 0,
   },
+  scrollViewContent: {
+    paddingBottom: 8,
+  },
   certCard: {
-    width: 200,
-    marginRight: 16,
-    borderRadius: 8,
+    width: Platform.OS === 'web' ? '31%' : 220,
+    marginRight: Platform.OS === 'web' ? 0 : 16,
+    marginBottom: Platform.OS === 'web' ? 16 : 0,
+    borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 3,
   },
   certThumbnail: {
     width: '100%',
-    height: 120,
+    height: 130,
     backgroundColor: '#e0e0e0',
   },
   certInfo: {
-    padding: 12,
+    padding: 16,
     gap: 4,
   },
   issuerText: {
@@ -164,35 +202,42 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: '100%',
-    maxWidth: 350,
-    padding: 20,
-    borderRadius: 12,
-    backgroundColor: 'white',
+    maxWidth: 400,
+    padding: 24,
+    borderRadius: 16,
     alignItems: 'center',
     gap: 16,
     position: 'relative',
+    borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 8,
   },
   closeButton: {
     position: 'absolute',
-    top: 10,
-    right: 10,
+    top: 16,
+    right: 16,
     zIndex: 1,
-    padding: 5,
+    padding: 8,
   },
   certImage: {
     width: '100%',
-    height: 200,
+    height: 220,
     marginBottom: 16,
+    borderRadius: 8,
   },
   viewButton: {
-    backgroundColor: '#0a7ea4',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 8,
-    marginTop: 10,
+    marginTop: 16,
   },
   viewButtonText: {
-    color: 'white',
     fontWeight: 'bold',
   },
 });
