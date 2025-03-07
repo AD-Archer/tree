@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# The /resume path redirects to /resume.pdf
-# This helps search engines understand the relationship between these URLs
-Disallow: /resume
-
-Sitemap: https://www.adarcher.app/sitemap.xml
