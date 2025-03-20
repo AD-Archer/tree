@@ -7,12 +7,7 @@ const LinkButtons = () => {
       name: "timewise",
       image: "/personal/timewise.png" 
     },
-    { 
-      href: "https://phillysocial.adarcher.app", 
-      icon: "fas fa-users", 
-      text: "Philly Social", 
-      name: "phillysocial",
-    },
+    
     { 
       href: "https://www.antonioarcher.com", 
       icon: "fa-solid fa-globe", 
@@ -43,6 +38,12 @@ const LinkButtons = () => {
       icon: "fas fa-code", 
       text: "View My Projects", 
       name: "projects" 
+    },
+    { 
+      href: "https://phillysocial.adarcher.app", 
+      icon: "fas fa-users", 
+      text: "Philly Social", 
+      name: "phillysocial",
     },
    
   ];
