@@ -5,7 +5,7 @@ const LinkButtons = () => {
       icon: "fas fa-clock", 
       text: "Timewise - Mood Tracker(My most recent app)", 
       name: "timewise",
-      image: "/personal/timewise.png" 
+      image: "/personal/timewise.webp" 
     },
     
     { 
