@@ -1,11 +1,17 @@
 const LinkButtons = () => {
   const links = [
     { 
+      href: "https://timewise.adarcher.app", 
+      icon: "fas fa-clock", 
+      text: "Timewise - Mood Tracker(My most recent app)", 
+      name: "timewise",
+      image: "/personal/timewise.png" 
+    },
+    { 
       href: "https://phillysocial.adarcher.app", 
       icon: "fas fa-users", 
-      text: "Philly Social - my most recent project", 
+      text: "Philly Social", 
       name: "phillysocial",
-      image: "/personal/phillysocial.png" 
     },
     { 
       href: "https://www.antonioarcher.com", 
@@ -117,4 +123,4 @@ const LinkButtons = () => {
   );
 };
 
-export default LinkButtons; 
+export default LinkButtons;
