@@ -81,45 +81,34 @@ const LinkButtons = () => {
         </a>
       ))}
 
-      <style jsx>{`
-        .link-btn.with-image {
-          display: flex;
-          flex-direction: column;
-        }
-        
-        .link-btn-content.featured-image {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-          position: relative;
-        }
-        
-        .image-container {
-          width: 100%;
-          margin-bottom: 10px;
-          border-radius: 8px;
-          overflow: hidden;
-        }
-        
-        .link-featured-image {
-          width: 100%;
-          aspect-ratio: 16/9;
-          object-fit: cover;
-        }
-        
-        .link-btn-content.featured-image .arrow-icon {
-          position: absolute;
-          right: 10px;
-          bottom: 10px;
-        }
-        
-        @media (max-width: 768px) {
-          .link-featured-image {
-            aspect-ratio: 3/2;
+      <style>
+        {`
+          .link-btn.with-image {
+            display: flex;
+            flex-direction: column;
           }
-        }
-      `}</style>
+          
+          .link-btn-content.featured-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+          }
+
+          .image-container {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+          }
+
+          .link-featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+          }
+        `}
+      </style>
     </div>
   );
 };

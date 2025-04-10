@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+// Declare gtag as a global function
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, params: any) => void;
+  }
+}
+
 const Layout = ({ children }) => {
   useEffect(() => {
     // Google Analytics tracking
