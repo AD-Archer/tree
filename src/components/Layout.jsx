@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// Declare gtag as a global function
-declare global {
-  interface Window {
-    gtag: (command: string, action: string, params: any) => void;
-  }
-}
+// Define gtag as a global function on the window object
+window.gtag = window.gtag || function () {};
 
 const Layout = ({ children }) => {
   useEffect(() => {
