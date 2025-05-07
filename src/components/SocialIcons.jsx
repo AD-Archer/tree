@@ -1,6 +1,6 @@
 const SocialIcons = () => {
   const socialLinks = [
-    { href: "mailto:adarcher21@gmail.com", icon: "fas fa-envelope", title: "Email" },
+    { href: "mailto:antonioarcher.dev@gmail.com", icon: "fas fa-envelope", title: "Email" },
     { href: "tel:+12672256778", icon: "fas fa-phone", title: "Phone", id: "phone" },
     { href: "https://www.instagram.com/antonio_darcher/", icon: "fab fa-instagram", title: "Instagram", target: "_blank" },
     { href: "https://www.twitter.com/ad_archer_", icon: "fab fa-twitter", title: "Twitter", target: "_blank" }

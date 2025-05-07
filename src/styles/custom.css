@@ -228,6 +228,37 @@ body {
   }
 }
 
+/* QR Code */
+.qr-code-container {
+  margin: 1rem auto 0; /* Adjusted margin for footer */
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.qr-code {
+  padding: 0; /* Removed padding */
+  background-color: transparent; /* Ensure background is transparent */
+  border-radius: 0; /* No border-radius for a flatter look */
+  box-shadow: none; /* No shadow */
+  margin-bottom: 0.25rem; /* Reduced margin */
+  border: none; /* No border */
+  transition: all 0.3s ease;
+  display: inline-block; /* To center it properly with text-align */
+}
+
+.qr-code:hover {
+  transform: none; /* No hover transform for footer QR */
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.qr-code-text {
+  color: inherit; /* Inherit color from footer text */
+  font-size: 0.75rem; /* Smaller font size for footer */
+  transition: color 0.3s ease;
+  margin-top: 0.25rem;
+}
+
 /* Footer */
 footer {
   margin-top: 2rem;
@@ -261,4 +292,4 @@ footer a:hover {
   .profile-name {
     font-size: 1.75rem;
   }
-} 
+}

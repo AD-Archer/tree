@@ -19,4 +19,4 @@ const ProfileSection = () => {
   );
 };
 
-export default ProfileSection; 
+export default ProfileSection;
