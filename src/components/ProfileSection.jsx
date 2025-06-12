@@ -2,7 +2,7 @@ const ProfileSection = () => {
   return (
     <div className="profile-section">
       <img 
-        src="/personal/antonioarcher.jpeg" 
+        src="/personal/antonioarcher.webp" 
         alt="Antonio Archer" 
         className="profile-img"
       />
