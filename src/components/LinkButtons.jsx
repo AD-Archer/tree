@@ -1,19 +1,18 @@
 const LinkButtons = () => {
   const links = [
     { 
-      href: "https://timewise.adarcher.app", 
-      icon: "fas fa-clock", 
-      text: "Timewise - Mood Tracker(My most recent app)", 
-      name: "timewise",
-      image: "/personal/timewise.webp" 
-    },
-    
-    { 
       href: "https://www.antonioarcher.com", 
       icon: "fa-solid fa-globe", 
-      text: "Portfolio Site", 
+      text: "Visit my full site and see what I'm up to!", 
       name: "portfolio",
-
+      image: "/personal/antonioarchercom.png"
+    },
+    {
+      href: "https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control",
+      icon: "fas fa-clock",
+      text: "Add me to your contacts",
+      name: "timewise",
+      image: "/personal/profile.avif"
     },
     { 
       href: "https://www.github.com/ad-archer", 
@@ -38,12 +37,6 @@ const LinkButtons = () => {
       icon: "fas fa-code", 
       text: "View My Projects", 
       name: "projects" 
-    },
-    { 
-      href: "https://phillysocial.adarcher.app", 
-      icon: "fas fa-users", 
-      text: "Philly Social", 
-      name: "phillysocial",
     },
    
   ];
