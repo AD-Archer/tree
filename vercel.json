@@ -1,15 +1,53 @@
 {
+  "functions": {
+    "api/resume.js": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/resume",
       "destination": "/resume.pdf"
+    },
+    {
+      "source": "/api/resume",
+      "destination": "/api/resume.js"
     }
   ],
-  "redirects": [
+  "headers": [
     {
-      "source": "/resume",
-      "destination": "/resume.pdf",
-      "permanent": true
+      "source": "/resume.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"resume.pdf\""
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
     }
   ]
 }
