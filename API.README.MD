@@ -57,6 +57,43 @@ curl "https://yourdomain.com/api/resume?format=info"
 **Description**: Alias endpoint that redirects to /api/resume
 **Response**: PDF file (application/pdf)
 
+### GET /api/resume/json and /api/resume/json.json
+**Description**: Returns a JSON representation parsed from the PDF text
+**Response**: JSON
+
+Example usage:
+```bash
+get https://yourdomain.com/api/resume/json
+get https://yourdomain.com/api/resume/json.json
+
+# Local development (Vercel functions are not served by Vite dev server):
+get http://localhost:5173/resume.pdf --output resume.pdf
+```
+
+Example response shape:
+```json
+{
+  "meta": {
+    "generatedAt": "2025-08-08T12:00:00.000Z",
+    "filename": "resume.pdf",
+    "size": 123456,
+    "lastModified": "2025-08-01T00:00:00.000Z",
+    "source": "/resume.pdf",
+    "contentType": "application/pdf"
+  },
+  "summary": "...",
+  "skills": ["React", "Node", "Tailwind"],
+  "sections": {
+    "summary": ["..."],
+    "experience": ["..."],
+    "education": ["..."],
+    "projects": ["..."],
+    "skills": ["..."],
+    "certifications": ["..."]
+  }
+}
+```
+
 ## Usage with n8n
 
 You can use these endpoints in n8n workflows using HTTP Request nodes:

@@ -2,12 +2,19 @@
   "functions": {
     "api/resume.js": {
       "maxDuration": 10
+    },
+    "api/resume/json.js": {
+      "maxDuration": 10
     }
   },
   "rewrites": [
     {
       "source": "/resume",
       "destination": "/resume.pdf"
+    },
+    {
+      "source": "/api/resume/json",
+      "destination": "/api/resume/json.js"
     },
     {
       "source": "/api/resume",

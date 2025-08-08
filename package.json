@@ -13,6 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.2",
     "@tailwindcss/vite": "^4.0.9",
+  "pdf-parse": "^1.1.1",
     "prop-types": "^15.8.1",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
