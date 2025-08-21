@@ -5,14 +5,14 @@ const LinkButtons = () => {
       icon: "fa-solid fa-globe", 
       text: "Visit my full site and see what I'm up to!", 
       name: "portfolio",
-      image: "/personal/antonioarchercom.png"
+      image: "/personal/portfo.webp"
     },
     {
       href: "https://s.blinq.me/z9wgm5sYJfBo43d4NS0y?n=Antonio&bs=iw&ida_v=control",
       icon: "fas fa-clock",
       text: "Add me to your contacts",
       name: "timewise",
-      image: "/personal/profile.avif"
+      image: "/personal/profile.webp"
     },
     { 
       href: "https://www.github.com/ad-archer", 
